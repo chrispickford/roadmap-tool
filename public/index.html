@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roadmap Tool</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <header class="toolbar">
+      <h1>Roadmap Tool</h1>
+      <div class="toolbar-actions">
+        <button id="clear-btn" class="btn-toolbar-danger">Clear All</button>
+        <button id="save-json-btn">Save JSON</button>
+        <button id="load-json-btn">Load JSON</button>
+        <input type="file" id="load-json-input" accept=".json" style="display:none">
+        <button id="export-btn">Export PNG</button>
+      </div>
+    </header>
+
+    <!-- Unified edit panel -->
+    <div class="edit-panel">
+      <nav class="panel-tabs">
+        <button class="panel-tab active" data-tab="general">General</button>
+        <button class="panel-tab" data-tab="sprints">Sprints</button>
+        <button class="panel-tab" data-tab="milestones">Milestones</button>
+        <button class="panel-tab" data-tab="swimlanes">Swimlanes</button>
+        <button class="panel-tab" data-tab="deliverables">Deliverables</button>
+      </nav>
+
+      <div class="panel-content">
+
+        <!-- General -->
+        <div class="tab-pane" id="tab-general">
+          <div class="general-fields">
+            <div class="field-group">
+              <label>Title</label>
+              <input type="text" id="cfg-title" />
+            </div>
+            <div class="field-group">
+              <label>Start Date</label>
+              <input type="date" id="cfg-date-start" />
+            </div>
+            <div class="field-group">
+              <label>End Date</label>
+              <input type="date" id="cfg-date-end" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Sprints -->
+        <div class="tab-pane hidden" id="tab-sprints">
+          <div id="sprints-list" class="config-list"></div>
+          <button class="add-btn" data-action="add-sprint">+ Add Sprint</button>
+        </div>
+
+        <!-- Milestones -->
+        <div class="tab-pane hidden" id="tab-milestones">
+          <div id="milestones-list" class="config-list"></div>
+          <button class="add-btn" data-action="add-milestone">+ Add Milestone</button>
+        </div>
+
+        <!-- Swimlanes -->
+        <div class="tab-pane hidden" id="tab-swimlanes">
+          <div id="rows-list" class="config-list"></div>
+          <button class="add-btn" data-action="add-row">+ Add Swimlane</button>
+        </div>
+
+        <!-- Deliverables -->
+        <div class="tab-pane hidden" id="tab-deliverables">
+          <div class="dp-sub-header">
+            <div id="row-tabs" class="row-tabs"></div>
+            <button id="add-deliverable-btn" class="btn-primary dp-add-btn">+ Add Deliverable</button>
+          </div>
+          <div class="dp-table-wrap">
+            <table class="dp-table">
+              <thead>
+                <tr><th>Label</th><th>Start</th><th>End</th><th></th></tr>
+              </thead>
+              <tbody id="dp-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="panel-resize-handle"></div>
+
+    <div class="main-layout">
+      <main class="workspace">
+        <div id="roadmap-container">
+          <canvas id="roadmap-canvas"></canvas>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Context menu -->
+  <div id="context-menu" class="context-menu hidden"></div>
+
+  <!-- Modal -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modal-title"></h2>
+        <button class="modal-close" id="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-footer">
+        <button id="modal-delete-btn" class="btn-danger hidden">Delete</button>
+        <div class="modal-footer-right">
+          <button id="modal-cancel-btn" class="btn-secondary">Cancel</button>
+          <button id="modal-save-btn" class="btn-primary">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

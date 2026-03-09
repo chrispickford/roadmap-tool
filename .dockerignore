@@ -1,0 +1,8 @@
+node_modules
+.git
+*.md
+template-roadmap.png
+src
+scripts
+tsconfig.json
+tsconfig.server.json
